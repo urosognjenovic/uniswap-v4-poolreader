@@ -1,4 +1,5 @@
 export const MAINNET_STATE_VIEW_ADDRESS = "0x7ffe42c4a5deea5b0fec41c94c136cf115597227";
+export const BASE_STATE_VIEW_ADDRESS = "0xA3c0c9b65baD0b08107Aa264b0f3dB444b867A71";
 export const STATE_VIEW_ABI = [
   {
     inputs: [
