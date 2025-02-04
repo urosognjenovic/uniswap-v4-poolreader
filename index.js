@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import { createPublicClient, getContract, http } from "viem";
 import { mainnet } from "viem/chains";
-import { STATE_VIEW_ADDRESS, STATE_VIEW_ABI } from "./constants.js";
+import { MAINNET_STATE_VIEW_ADDRESS, STATE_VIEW_ABI } from "./constants.js";
 
 const poolId = "0x21C67E77068DE97969BA93D4AAB21826D33CA12BB9F565D8496E8FDA8A82CA27";
 
@@ -14,7 +14,7 @@ const client = createPublicClient({
 
 // Set up StateView contract instance
 const stateView = getContract({
-  address: STATE_VIEW_ADDRESS,
+  address: MAINNET_STATE_VIEW_ADDRESS,
   abi: STATE_VIEW_ABI,
   client, 
 });
