@@ -1,5 +1,5 @@
-STATE_VIEW_ADDRESS = 0x7ffe42c4a5deea5b0fec41c94c136cf115597227;
-STATE_VIEW_ABI = [
+export const STATE_VIEW_ADDRESS = "0x7ffe42c4a5deea5b0fec41c94c136cf115597227";
+export const STATE_VIEW_ABI = [
   {
     inputs: [
       {
