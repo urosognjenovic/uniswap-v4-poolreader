@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-import { createPublicClient, getContract, http } from "viem";
+import { createPublicClient, http, getContract } from "viem";
 import { mainnet, base } from "viem/chains";
 import { MAINNET_STATE_VIEW_ADDRESS, BASE_STATE_VIEW_ADDRESS, STATE_VIEW_ABI } from "./constants.js";
 
@@ -22,8 +22,12 @@ const stateView = getContract({
 
 // Get the total liquidity of the pool
 const getPoolLiquidity = async (poolId) => {
-  const liquidity = await stateView.read.getLiquidity([poolId]);
-  console.log("Pool liquidity:", liquidity.toString());
+  try {
+    const liquidity = await stateView.read.getLiquidity([poolId]);
+    console.log("Pool liquidity:", liquidity.toString());
+  } catch (error) {
+    console.error("Error fetching pool liquidity:", error);
+  }
 }
 
 getPoolLiquidity(mainnetPoolId);
