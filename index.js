@@ -30,4 +30,22 @@ const getPoolLiquidity = async (poolId) => {
   }
 }
 
+// Get the pool state 
+const getPoolState = async (poolId) => {
+  const [
+    sqrtPriceX96,
+    tick,
+    protocolFee,
+    lpFee
+   ] = await stateView.read.getSlot0([poolId]);
+
+  console.log(
+    "Price:", sqrtPriceX96,
+    "Tick:", tick,
+    "Protocol Fee:", protocolFee,
+    "LP Fee:", lpFee
+  )
+};
+
+getPoolState(mainnetPoolId);
 getPoolLiquidity(mainnetPoolId);
