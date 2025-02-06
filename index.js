@@ -49,8 +49,21 @@ const getPoolState = async (poolId) => {
 };
 
 const main = async() => {
-  getPoolState(mainnetPoolId);
-  getPoolLiquidity(mainnetPoolId);
+  const liquidity = await getPoolLiquidity(mainnetPoolId);
+  console.log("liquidity:", liquidity);
+
+  const {
+    sqrtPriceX96,
+    tick, 
+    protocolFee, 
+    lpFee} = await getPoolState(mainnetPoolId);
+
+  console.log(
+    "sqrtPriceX96:", sqrtPriceX96,
+    "tick:", tick,
+    "protocolFee:", protocolFee,
+    "lpFee:", lpFee
+  );
 }
 
 main();
