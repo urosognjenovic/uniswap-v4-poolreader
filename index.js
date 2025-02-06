@@ -24,7 +24,8 @@ const stateView = getContract({
 const getPoolLiquidity = async (poolId) => {
   try {
     const liquidity = await stateView.read.getLiquidity([poolId]);
-    console.log("Pool liquidity:", liquidity.toString());
+    
+    return liquidity;
   } catch (error) {
     console.error("Error fetching pool liquidity:", error);
   }
@@ -39,12 +40,12 @@ const getPoolState = async (poolId) => {
     lpFee
    ] = await stateView.read.getSlot0([poolId]);
 
-  console.log(
-    "Price:", sqrtPriceX96,
-    "Tick:", tick,
-    "Protocol Fee:", protocolFee,
-    "LP Fee:", lpFee
-  )
+  return {
+    sqrtPriceX96,
+    tick,
+    protocolFee,
+    lpFee
+  };
 };
 
 getPoolState(mainnetPoolId);
