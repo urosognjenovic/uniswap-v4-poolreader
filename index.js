@@ -48,5 +48,9 @@ const getPoolState = async (poolId) => {
   };
 };
 
-getPoolState(mainnetPoolId);
-getPoolLiquidity(mainnetPoolId);
+const main = async() => {
+  getPoolState(mainnetPoolId);
+  getPoolLiquidity(mainnetPoolId);
+}
+
+main();
