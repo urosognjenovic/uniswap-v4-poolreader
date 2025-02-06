@@ -33,19 +33,24 @@ const getPoolLiquidity = async (poolId) => {
 
 // Get the pool state 
 const getPoolState = async (poolId) => {
-  const [
-    sqrtPriceX96,
-    tick,
-    protocolFee,
-    lpFee
-   ] = await stateView.read.getSlot0([poolId]);
-
-  return {
-    sqrtPriceX96,
-    tick,
-    protocolFee,
-    lpFee
-  };
+  try {
+    const [
+      sqrtPriceX96,
+      tick,
+      protocolFee,
+      lpFee
+     ] = await stateView.read.getSlot0([poolId]);
+  
+    return {
+      sqrtPriceX96,
+      tick,
+      protocolFee,
+      lpFee
+    };
+  } catch(error) {
+    console.log("Error fetching pool state:", error);
+  }
+  
 };
 
 const main = async() => {
