@@ -72,12 +72,26 @@ const getPositionInfo = async(stateView, poolId, positionId) => {
   }
 }
 
+// Get the poolManager address
+const getPoolManager = async(stateView) => {
+  try {
+    const poolManager = await stateView.read.poolManager();
+
+    return poolManager;
+  } catch(error) {
+    console.log("Error fetching pool manager address:", error);
+  }
+}
+
 const main = async() => {
   const mainnetPoolId = "0x21C67E77068DE97969BA93D4AAB21826D33CA12BB9F565D8496E8FDA8A82CA27";
   const basePoolId = "0x74B1EB0EB9068ED54B6B9D55673F7DE8FAC3299CE7E3DF916E0172676D225A1A";
 
   const client = initializeClient(mainnet, process.env.MAINNET_RPC_URL);
   const stateView = setUpStateView(MAINNET_STATE_VIEW_ADDRESS, STATE_VIEW_ABI, client);
+
+    const poolManager = await getPoolManager(stateView);
+    console.log("poolManager:", poolManager);
   
   const liquidity = await getPoolLiquidity(stateView, mainnetPoolId);
   console.log("liquidity:", liquidity);
