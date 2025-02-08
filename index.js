@@ -134,7 +134,7 @@ const getTickFeeGrowthOutside = async(stateView, poolId, tick) => {
       feeGrowthOutside1X128
     };
   } catch(error) {
-    console.log("Error fetching fee growth:", error);
+    console.log("Error fetching fee growth outside tick range:", error);
   }
 }
 
@@ -163,6 +163,34 @@ const getTickBitmap = async(stateView, poolId, tick) => {
     return tickBitmap;
   } catch(error) {
     console.log("Error fetching tick bitmap:", error);
+  }
+}
+
+// Get the liquidity of a position
+const getPositionLiquidity = async(stateView, poolId, positionId) => {
+  try {
+    const liquidity = await stateView.read.getPositionLiquidity(poolId, positionId);
+
+    return liquidity;
+  } catch(error) {
+    console.log("Error fetching position liquidity:", error);
+  }
+}
+
+// Get the fee growth inside a tick range of a pool
+const getFeeGrowthInside = async(stateView, poolId, tickLower, tickUpper) => {
+  try {
+    const [
+      feeGrowthInside0X128,
+      feeGrowthInside1X128
+    ] = await stateView.read.getFeeGrowthInside(poolId, tickLower, tickUpper);
+
+    return {
+      feeGrowthInside0X128,
+      feeGrowthInside1X128
+    };
+  } catch(error) {
+    console.log("Error fetching fee growth inside tick range:", error);
   }
 }
 
