@@ -121,6 +121,23 @@ const getTickInfo = async(poolId, tick) => {
   }
 }
 
+// Get the fee growth outside a tick range of a pool
+const getTickFeeGrowthOutside = async(poolId, tick) => {
+  try {
+    [
+      feeGrowthOutside0X128,
+      feeGrowthOutside1X128
+    ] = await stateView.read.getTickFeeGrowthOutside(poolId, tick);
+
+    return {
+      feeGrowthOutside0X128,
+      feeGrowthOutside1X128
+    };
+  } catch(error) {
+    console.log("Error fetching fee growth:", error);
+  }
+}
+
 const main = async() => {
   const mainnetPoolId = "0x21C67E77068DE97969BA93D4AAB21826D33CA12BB9F565D8496E8FDA8A82CA27";
   const basePoolId = "0x74B1EB0EB9068ED54B6B9D55673F7DE8FAC3299CE7E3DF916E0172676D225A1A";
