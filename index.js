@@ -84,7 +84,7 @@ const getPoolManager = async(stateView) => {
 }
 
 // Get the tick liquidity
-const getTickLiquidity = async(poolId, tick) => {
+const getTickLiquidity = async(stateView, poolId, tick) => {
   try {
     const [
       liquidityGross,
@@ -101,7 +101,7 @@ const getTickLiquidity = async(poolId, tick) => {
 }
 
 // Get the tick info
-const getTickInfo = async(poolId, tick) => {
+const getTickInfo = async(stateView, poolId, tick) => {
   try {
     const [
       liquidityGross,
@@ -122,7 +122,7 @@ const getTickInfo = async(poolId, tick) => {
 }
 
 // Get the fee growth outside a tick range of a pool
-const getTickFeeGrowthOutside = async(poolId, tick) => {
+const getTickFeeGrowthOutside = async(stateView, poolId, tick) => {
   try {
     const [
       feeGrowthOutside0X128,
@@ -139,7 +139,7 @@ const getTickFeeGrowthOutside = async(poolId, tick) => {
 }
 
 // Get the global fee growth of a pool
-const getFeeGrowthGlobals = async(poolId) => {
+const getFeeGrowthGlobals = async(stateView, poolId) => {
   try {
     const [
       feeGrowthGlobal0,
@@ -156,7 +156,7 @@ const getFeeGrowthGlobals = async(poolId) => {
 }
 
 // Get the tick bitmap of a pool at a specific tick
-const getTickBitmap = async(poolId, tick) => {
+const getTickBitmap = async(stateView, poolId, tick) => {
   try {
     const tickBitmap = await stateView.read.getTickBitmap(poolId, tick);
 
