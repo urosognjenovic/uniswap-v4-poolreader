@@ -8,11 +8,11 @@ export const initializeClient = (chain, rpcUrl) => {
   });
 }
 
-// Set up StateView contract instance
-export const setUpStateView = (stateViewAddress, stateViewABI, client) => {
+// Set up a contract instance
+export const setUpContract = (contractAddress, contractABI, client) => {
   return getContract({
-    address: stateViewAddress,
-    abi: stateViewABI,
+    address: contractAddress,
+    abi: contractABI,
     client: client
   })
 }
