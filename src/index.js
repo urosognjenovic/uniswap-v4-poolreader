@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 dotenv.config();
-import { slice, toBytes, toHex } from "viem";
 import { mainnet, base } from "viem/chains";
 import { initializeClient, setUpContract } from "./utils/client.js";
 import { getPoolManager, getPoolLiquidity, getPoolState } from "./utils/gettersStateView.js";
@@ -35,9 +34,20 @@ const main = async() => {
     "lpFee:", lpFee
   );
 
-  const poolIdBytes25 = slice(ethereumPoolId, 0, 25);
-  const poolKeys = await getPoolKeys(positionManager, [poolIdBytes25]);
-  console.log(poolKeys);
+  const {
+    currency0,
+    currency1,
+    fee,
+    tickSpacing,
+    hooks
+  } = await getPoolKeys(positionManager, ethereumPoolId);
+  console.log(
+    "currency0:", currency0,
+    "currency1:", currency1,
+    "fee:", fee,
+    "tickSpacing:", tickSpacing,
+    "hooks:", hooks
+  );
 }
 
 main();
