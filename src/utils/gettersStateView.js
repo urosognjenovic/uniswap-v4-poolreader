@@ -6,6 +6,7 @@ export const getPoolLiquidity = async (stateView, poolId) => {
       return liquidity;
     } catch (error) {
       console.error("Error fetching pool liquidity:", error);
+      return null;
     }
   }
   
@@ -26,7 +27,8 @@ export const getPoolState = async (stateView, poolId) => {
       lpFee
     };
   } catch(error) {
-    console.log("Error fetching pool state:", error);
+    console.error("Error fetching pool state:", error);
+    return null;
   }
 };
 
@@ -45,7 +47,8 @@ export const getPositionInfoWithPositionID = async(stateView, poolId, positionId
       feeGrowthInside1LastX128
     };
   } catch(error) {
-    console.log("Error fetching position info:", error);
+    console.error("Error fetching position info:", error);
+    return null;
   }
 }
 
@@ -64,7 +67,8 @@ export const getPositionInfoWithPositionDetails = async(stateView, poolId, owner
       feeGrowthInside1LastX128
     };
   } catch(error) {
-    console.log("Error fetching position info:", error);
+    console.error("Error fetching position info:", error);
+    return null;
   }
 }
 
@@ -75,7 +79,8 @@ export const getPoolManager = async(stateView) => {
 
     return poolManager;
   } catch(error) {
-    console.log("Error fetching pool manager address:", error);
+    console.error("Error fetching pool manager address:", error);
+    return null;
   }
 }
 
@@ -92,7 +97,8 @@ export const getTickLiquidity = async(stateView, poolId, tick) => {
       liquidityNet
     };
   } catch(error) {
-    console.log("Error fetching tick liquidity:", error);
+    console.error("Error fetching tick liquidity:", error);
+    return null;
   }
 }
 
@@ -113,7 +119,8 @@ export const getTickInfo = async(stateView, poolId, tick) => {
       feeGrowthOutside1X128
     };
   } catch(error) {
-    console.log("Error fetching tick info:", error);
+    console.error("Error fetching tick info:", error);
+    return null;
   }
 }
 
@@ -130,7 +137,8 @@ export const getTickFeeGrowthOutside = async(stateView, poolId, tick) => {
       feeGrowthOutside1X128
     };
   } catch(error) {
-    console.log("Error fetching fee growth outside tick range:", error);
+    console.error("Error fetching fee growth outside tick range:", error);
+    return null;
   }
 }
 
@@ -147,7 +155,8 @@ export const getFeeGrowthGlobals = async(stateView, poolId) => {
       feeGrowthGlobal1
     };
   } catch(error) {
-    console.log("Error fetching global fee growth:", error);
+    console.error("Error fetching global fee growth:", error);
+    return null;
   }
 }
 
@@ -158,7 +167,8 @@ export const getTickBitmap = async(stateView, poolId, tick) => {
 
     return tickBitmap;
   } catch(error) {
-    console.log("Error fetching tick bitmap:", error);
+    console.error("Error fetching tick bitmap:", error);
+    return null;
   }
 }
 
@@ -169,7 +179,8 @@ export const getPositionLiquidity = async(stateView, poolId, positionId) => {
 
     return liquidity;
   } catch(error) {
-    console.log("Error fetching position liquidity:", error);
+    console.error("Error fetching position liquidity:", error);
+    return null;
   }
 }
 
@@ -186,6 +197,7 @@ export const getFeeGrowthInside = async(stateView, poolId, tickLower, tickUpper)
       feeGrowthInside1X128
     };
   } catch(error) {
-    console.log("Error fetching fee growth inside tick range:", error);
+    console.error("Error fetching fee growth inside tick range:", error);
+    return null;
   }
 }

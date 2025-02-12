@@ -20,6 +20,7 @@ export const getPoolKeys = async(positionManager, poolId) => {
 			hooks
 		};
 	} catch(error) {
-			console.log("Error fetching pool keys:", error);
+			console.error("Error fetching pool keys:", error);
+      return null;
 	}
 }
