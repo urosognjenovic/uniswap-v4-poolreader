@@ -16,38 +16,54 @@ const main = async() => {
   const positionManager = setUpContract(ETHEREUM_POSITION_MANAGER_ADDRESS, POSITION_MANAGER_ABI, client);
 
   const poolManager = await getPoolManager(stateView);
-  console.log("poolManager:", poolManager);
+
+  if (poolManager) {
+    console.log("poolManager:", poolManager);
+  }
   
   const liquidity = await getPoolLiquidity(stateView, ethereumPoolId);
-  console.log("liquidity:", liquidity);
 
-  const {
-    sqrtPriceX96,
-    tick, 
-    protocolFee, 
-    lpFee
-  } = await getPoolState(stateView, ethereumPoolId);
-  console.log(
-    "sqrtPriceX96:", sqrtPriceX96,
-    "tick:", tick,
-    "protocolFee:", protocolFee,
-    "lpFee:", lpFee
-  );
+  if (liquidity) {
+    console.log("liquidity:", liquidity);
+  }
+  
+  const poolState = await getPoolState(stateView, ethereumPoolId);;
 
-  const {
-    currency0,
-    currency1,
-    fee,
-    tickSpacing,
-    hooks
-  } = await getPoolKeys(positionManager, ethereumPoolId);
-  console.log(
-    "currency0:", currency0,
-    "currency1:", currency1,
-    "fee:", fee,
-    "tickSpacing:", tickSpacing,
-    "hooks:", hooks
-  );
+  if (poolState) {
+    const {
+      sqrtPriceX96,
+      tick, 
+      protocolFee, 
+      lpFee
+    } = poolState;
+
+    console.log(
+      "sqrtPriceX96:", sqrtPriceX96,
+      "tick:", tick,
+      "protocolFee:", protocolFee,
+      "lpFee:", lpFee
+    );
+  }
+
+  const poolKeys = await getPoolKeys(positionManager, ethereumPoolId);
+
+  if (poolKeys) {
+    const {
+      currency0,
+      currency1,
+      fee,
+      tickSpacing,
+      hooks
+    } = poolKeys;
+
+    console.log(
+      "currency0:", currency0,
+      "currency1:", currency1,
+      "fee:", fee,
+      "tickSpacing:", tickSpacing,
+      "hooks:", hooks
+    );
+  }
 }
 
 main();
