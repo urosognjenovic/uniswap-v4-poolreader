@@ -6,6 +6,7 @@ import { getPoolManager, getPoolLiquidity, getPoolState } from "./utils/gettersS
 import { getPoolKeys } from "./utils/gettersPositionManager.js";
 import { ETHEREUM_STATE_VIEW_ADDRESS, BASE_STATE_VIEW_ADDRESS, ETHEREUM_POSITION_MANAGER_ADDRESS } from "../constants/addresses.js";
 import { STATE_VIEW_ABI, POSITION_MANAGER_ABI } from "../constants/abi.js";
+import { convertFeeToPercent } from "./utils/helpers.js";
 
 const main = async() => {
   const ethereumPoolId = "0x21C67E77068DE97969BA93D4AAB21826D33CA12BB9F565D8496E8FDA8A82CA27";
@@ -40,8 +41,8 @@ const main = async() => {
     console.log(
       "sqrtPriceX96:", sqrtPriceX96,
       "tick:", tick,
-      "protocolFee:", protocolFee,
-      "lpFee:", lpFee
+      "protocolFee:", convertFeeToPercent(protocolFee),
+      "lpFee:", convertFeeToPercent(lpFee)
     );
   }
 
