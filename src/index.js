@@ -7,6 +7,8 @@ import {
   getPoolLiquidity,
   getPoolState,
 } from "./utils/gettersStateView.js";
+import { createPoolKey } from "../constants/types.js";
+import { getPoolIdFromPoolKey } from "./utils/poolId.js";
 import { getPoolKeys } from "./utils/gettersPositionManager.js";
 import {
   ETHEREUM_STATE_VIEW_ADDRESS,
@@ -21,6 +23,23 @@ import {
 import { convertFeeToPercent, calculatePrice } from "./utils/helpers.js";
 
 const main = async () => {
+  const CURRENCY0 = "0x558AFaF6FeF52395D558F9fc1ab18A08C7A7548b";
+  const CURRENCY1 = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
+  const FEE = 10000;
+  const TICK_SPACING = 60;
+  const HOOKS = "0x0000000000000000000000000000000000000000";
+
+  const poolKey = createPoolKey({
+    currency0: CURRENCY0,
+    currency1: CURRENCY1,
+    fee: FEE,
+    tickSpacing: TICK_SPACING,
+    hooks: HOOKS,
+  });
+  const poolId = getPoolIdFromPoolKey(poolKey);
+
+  console.log("poolId: ", poolId);
+
   const ethereumPoolId =
     "0x21C67E77068DE97969BA93D4AAB21826D33CA12BB9F565D8496E8FDA8A82CA27";
   const basePoolId =
